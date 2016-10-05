@@ -10,14 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var beatsLabel: UILabel!
+    @IBOutlet var screenTapButton: UIButton!
+    var numClicks: Int? // why am I adding this unwrapper at the end?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        numClicks = 0
+        beatsLabel.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    @IBAction func screenTapped(_ sender: AnyObject) {
+        numClicks = (numClicks ?? 0) + 1
+        beatsLabel.text = "\(numClicks ?? 0)"
+        
     }
 
 
