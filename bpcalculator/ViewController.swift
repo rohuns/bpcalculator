@@ -66,6 +66,8 @@ class ViewController: UIViewController {
         timeCounter = maxTime
         timerCounter.text = String(timeCounter)
         var clickAllowed = false
+        timer.invalidate()
+        
     }
     
 
