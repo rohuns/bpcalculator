@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var numClicks: Int? // why am I adding this unwrapper at the end?
     var timer = Timer()
     var timeCounter = 0.00
+    var maxTime = 5.00
+
     override func viewDidLoad() {
         super.viewDidLoad()
         numClicks = 0
@@ -29,18 +31,30 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     @IBAction func screenTapped(_ sender: AnyObject) {
-        numClicks = (numClicks ?? 0) + 1
-        beatsLabel.text = "\(numClicks ?? 0)"
+        if(timeCounter)<maxTime{
+            numClicks = (numClicks ?? 0) + 1
+            beatsLabel.text = "\(numClicks ?? 0)"
+        }
         
     }
     @IBAction func playButton(_ sender: UIButton) {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats:true) // repeats not working correctly
     }
     
     func updateCounter(){
-        timeCounter = timeCounter + 0.1
-        timeCounter = round(timeCounter*10000)/10000 //only show first 4 decimals
-        timerCounter.text = String(timeCounter)
+        maxTime = maxTime - 0.01
+        
+        //timeCounter = timeCounter + 0.01
+        //timeCounter = round(timeCounter*10000)/10000 //only show first 4 decimals
+        
+        let twoDecimalPlaces = String(format:"%.2f", maxTime)
+        timerCounter.text = twoDecimalPlaces
+     
+        
+        if(maxTime <= 0){
+            timer.invalidate()
+            timerCounter.text = String("0.00") //prints the final time
+        }
     }
 
 
