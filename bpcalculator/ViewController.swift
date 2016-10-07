@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController {
+    @IBOutlet var resetButton: UIButton!
 
     @IBOutlet var timerCounter: UILabel!
     @IBOutlet var beatsLabel: UILabel!
@@ -17,45 +19,55 @@ class ViewController: UIViewController {
     var timer = Timer()
     var timeCounter = 0.00
     var maxTime = 5.00
+    var clickAllowed = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        numClicks = 0
-        beatsLabel.text = "0"
-        
-        //setting up the timer
-        timerCounter.text = String(timeCounter)
+        reset()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     @IBAction func screenTapped(_ sender: AnyObject) {
-        if(timeCounter)<maxTime{
+        if(clickAllowed){
             numClicks = (numClicks ?? 0) + 1
             beatsLabel.text = "\(numClicks ?? 0)"
         }
         
     }
     @IBAction func playButton(_ sender: UIButton) {
+        clickAllowed = true
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats:true) // repeats not working correctly
     }
     
     func updateCounter(){
-        maxTime = maxTime - 0.01
-        
-        //timeCounter = timeCounter + 0.01
-        //timeCounter = round(timeCounter*10000)/10000 //only show first 4 decimals
-        
-        let twoDecimalPlaces = String(format:"%.2f", maxTime)
+        timeCounter = timeCounter - 0.01
+        let twoDecimalPlaces = String(format:"%.2f", timeCounter)
         timerCounter.text = twoDecimalPlaces
      
         
-        if(maxTime <= 0){
+        if(timeCounter <= 0){
             timer.invalidate()
+            clickAllowed = false
             timerCounter.text = String("0.00") //prints the final time
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
     }
+    
+    @IBAction func resetClicked(_ sender: UIButton) {
+        reset()
+    }
+    
+    func reset() {
+        numClicks = 0
+        beatsLabel.text = "0"
+        timeCounter = maxTime
+        timerCounter.text = String(timeCounter)
+        var clickAllowed = false
+    }
+    
 
 
 }

@@ -48,11 +48,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJW-F5-Ss4">
+                                <frame key="frameInset" minX="168" minY="536" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WU2-7w-kfd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="beatsLabel" destination="yuk-6S-hXU" id="d5J-LY-9OO"/>
+                        <outlet property="resetButton" destination="ZJW-F5-Ss4" id="p9L-0g-bOj"/>
                         <outlet property="screenTapButton" destination="Bg3-cO-b1b" id="MpQ-2J-8tb"/>
                         <outlet property="timerCounter" destination="0PK-Ns-bnr" id="fqB-6x-0u0"/>
                     </connections>
