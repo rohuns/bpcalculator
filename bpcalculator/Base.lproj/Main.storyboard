@@ -73,12 +73,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="125"/>
+            <point key="canvasLocation" x="208.80000000000001" y="124.58770614692655"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="SO2-r9-sIV">
             <objects>
-                <viewController id="9bj-4Y-xc3" sceneMemberID="viewController">
+                <viewController id="9bj-4Y-xc3" customClass="SettingsViewController" customModule="bpcalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VEV-lm-oNP"/>
                         <viewControllerLayoutGuide type="bottom" id="4da-7b-abM"/>
@@ -88,38 +88,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fN2-pv-HHw">
-                                <frame key="frameInset" minX="165" minY="67" width="121" height="29"/>
+                                <frame key="frameInset" minX="53" minY="124" width="269" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="10"/>
+                                    <segment title="15"/>
+                                    <segment title="30"/>
                                 </segments>
+                                <connections>
+                                    <action selector="timeValueChanged:" destination="9bj-4Y-xc3" eventType="valueChanged" id="etb-cf-lWr"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="timerSegContol" destination="fN2-pv-HHw" id="V85-QW-ztq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euf-cp-ZoL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031" y="125"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="l9B-DC-AP3">
-            <objects>
-                <viewController id="tBC-9G-tT2" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LBL-69-6Jy"/>
-                        <viewControllerLayoutGuide type="bottom" id="Tyz-yg-SUg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PJa-BT-7VD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nHW-CP-Y7U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1865" y="125"/>
+            <point key="canvasLocation" x="1029.5999999999999" y="124.58770614692655"/>
         </scene>
     </scenes>
 </document>

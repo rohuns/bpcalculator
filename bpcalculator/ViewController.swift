@@ -18,17 +18,30 @@ class ViewController: UIViewController {
     var numClicks: Int? // why am I adding this unwrapper at the end?
     var timer = Timer()
     var timeCounter = 0.00
-    var maxTime = 5.00
+    var maxTime = 0.00
     var clickAllowed = false
+    let timeMaxSettings = [10.00, 15.00, 30.00]
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTipIndex")]
         reset()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let defaults = UserDefaults.standard
+        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTipIndex")]
     }
     @IBAction func screenTapped(_ sender: AnyObject) {
         if(clickAllowed){
@@ -67,6 +80,7 @@ class ViewController: UIViewController {
         timerCounter.text = String(timeCounter)
         var clickAllowed = false
         timer.invalidate()
+        
         
     }
     
