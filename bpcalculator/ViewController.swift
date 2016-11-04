@@ -11,23 +11,30 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     @IBOutlet var resetButton: UIButton!
-
+    @IBOutlet var timerView: UIView!
+    @IBOutlet var resultView: UIView!
     @IBOutlet var timerCounter: UILabel!
     @IBOutlet var beatsLabel: UILabel!
-    @IBOutlet var screenTapButton: UIButton!
-    var numClicks: Int? // why am I adding this unwrapper at the end?
+    var numClicks = 0
     var timer = Timer()
     var timeCounter = 0.00
-    var maxTime = 0.00
+    var maxTime: Double?
     var clickAllowed = false
     let timeMaxSettings = [10.00, 15.00, 30.00]
+    var beatsPM: Int!
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
-        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTipIndex")]
+        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTimerIndex")]
+        
+        //
+        resultView.isHidden = true
+        navigationController?.navigationBar.barTintColor = UIColor.darkGray
+        //self.view.backgroundColor = UIColor.darkGray
+        //navigationController?.navigationBar.barStyle = UIBarStyle.black
         reset()
         
     }
@@ -41,18 +48,21 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let defaults = UserDefaults.standard
-        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTipIndex")]
+        maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTimerIndex")]
+        reset()
     }
-    @IBAction func screenTapped(_ sender: AnyObject) {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if(clickAllowed){
-            numClicks = (numClicks ?? 0) + 1
-            beatsLabel.text = "\(numClicks ?? 0)"
+            numClicks += 1
+            beatsLabel.text = "\(numClicks)"
         }
-        
     }
     @IBAction func playButton(_ sender: UIButton) {
-        clickAllowed = true
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats:true) // repeats not working correctly
+        if(!clickAllowed){ //get click play if it is already playing
+            clickAllowed = true
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector("updateCounter"), userInfo: nil, repeats:true) // repeats not working correctly
+        }
     }
     
     func updateCounter(){
@@ -66,6 +76,9 @@ class ViewController: UIViewController {
             clickAllowed = false
             timerCounter.text = String("0.00") //prints the final time
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            calculateBPM()
+            resultView.isHidden = false
+            timerView.isHidden = true
         }
     }
     
@@ -74,15 +87,29 @@ class ViewController: UIViewController {
     }
     
     func reset() {
+        timer.invalidate()
         numClicks = 0
         beatsLabel.text = "0"
-        timeCounter = maxTime
+        timeCounter = maxTime!
         timerCounter.text = String(timeCounter)
-        var clickAllowed = false
-        timer.invalidate()
-        
+        clickAllowed = false
+        resultView.isHidden = true
+        timerView.isHidden = false
+    }
+    
+    func calculateBPM() {
+        let doubleBPM = Double(numClicks)*(60.00/maxTime!)
+        beatsPM = Int(round(doubleBPM))
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "results"){
+            let ResultsViewController = segue.destination as! ResultsViewController
+            ResultsViewController.bpm = beatsPM
+        }
         
     }
+    
     
 
 

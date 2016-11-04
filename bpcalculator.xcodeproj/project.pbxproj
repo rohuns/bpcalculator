@@ -15,6 +15,7 @@
 		16267F711DA4E41D0018CD72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16267F6F1DA4E41D0018CD72 /* LaunchScreen.storyboard */; };
 		16267F7C1DA4E41D0018CD72 /* bpcalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16267F7B1DA4E41D0018CD72 /* bpcalculatorTests.swift */; };
 		16267F871DA4E41D0018CD72 /* bpcalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16267F861DA4E41D0018CD72 /* bpcalculatorUITests.swift */; };
+		16EE7D641DCB2C8000EEA73D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EE7D631DCB2C8000EEA73D /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		16267F821DA4E41D0018CD72 /* bpcalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bpcalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16267F861DA4E41D0018CD72 /* bpcalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bpcalculatorUITests.swift; sourceTree = "<group>"; };
 		16267F881DA4E41D0018CD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16EE7D631DCB2C8000EEA73D /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				16267F6F1DA4E41D0018CD72 /* LaunchScreen.storyboard */,
 				16267F721DA4E41D0018CD72 /* Info.plist */,
 				1615B77F1DA876B900C3BD8A /* SettingsViewController.swift */,
+				16EE7D631DCB2C8000EEA73D /* ResultsViewController.swift */,
 			);
 			path = bpcalculator;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				16267F691DA4E41D0018CD72 /* ViewController.swift in Sources */,
 				16267F671DA4E41D0018CD72 /* AppDelegate.swift in Sources */,
 				1615B7801DA876B900C3BD8A /* SettingsViewController.swift in Sources */,
+				16EE7D641DCB2C8000EEA73D /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,9 +12,28 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet var timerSegContol: UISegmentedControl!
-    @IBAction func timeValueChanged(_ sender: UISegmentedControl) {
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let defaults = UserDefaults.standard
-        //defaults.setInteger(timerSegContol.selectedSegmentIndex, forKey:"defaultTimerIndex")
+        timerSegContol.selectedSegmentIndex = defaults.integer(forKey: "defaultTimerIndex")
     }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        <#code#>
+//    }
+    
+    @IBAction func timeValueChanged(_ sender: UISegmentedControl) {
+        let defaults = UserDefaults.standard
+        defaults.set(timerSegContol.selectedSegmentIndex, forKey:"defaultTimerIndex")
+        
+        let timeMaxSettings = [10.00, 15.00, 30.00]
+//        let tipPercentage = timeMaxSettings[timerSegContol.selectedSegmentIndex]
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let ViewController = segue.destination as! ViewController
+//        ViewController
+//    }
 }
