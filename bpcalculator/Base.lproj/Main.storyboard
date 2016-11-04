@@ -89,6 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="beatsLabel" destination="yuk-6S-hXU" id="d5J-LY-9OO"/>
+                        <outlet property="playButton" destination="38k-sW-yzI" id="fch-xH-acq"/>
                         <outlet property="resetButton" destination="ZJW-F5-Ss4" id="p9L-0g-bOj"/>
                         <outlet property="resultView" destination="eDG-TK-Iwi" id="0QJ-Ak-5qr"/>
                         <outlet property="timerCounter" destination="0PK-Ns-bnr" id="fqB-6x-0u0"/>

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet var resultView: UIView!
     @IBOutlet var timerCounter: UILabel!
     @IBOutlet var beatsLabel: UILabel!
+    @IBOutlet var playButton: UIButton!
     var numClicks = 0
     var timer = Timer()
     var timeCounter = 0.00
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
         maxTime = timeMaxSettings[defaults.integer(forKey: "defaultTimerIndex")]
+        //playButton.setImage(UIImage(named: "play"), for: UIControlState.normal)
         
         //
         resultView.isHidden = true
